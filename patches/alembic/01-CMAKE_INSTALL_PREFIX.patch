@@ -1,0 +1,19 @@
+diff -rup alembic-1.5.8.orig/CMakeLists.txt alembic-1.5.8/CMakeLists.txt
+--- alembic-1.5.8.orig/CMakeLists.txt	2015-01-15 13:28:49.000000000 -0500
++++ alembic-1.5.8/CMakeLists.txt	2016-08-17 06:23:31.800339294 -0400
+@@ -127,15 +127,6 @@ endif ()
+ #-******************************************************************************
+ #-******************************************************************************
+ 
+-IF ( DEFINED ENV{ALEMBIC_INSTALL_PREFIX} )
+-  SET( CMAKE_INSTALL_PREFIX
+-    $ENV{ALEMBIC_INSTALL_PREFIX}/alembic-${VERSION} )
+-ELSE ()
+-  SET( ORIGINAL_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX} )
+-  SET( CMAKE_INSTALL_PREFIX
+-    ${ORIGINAL_INSTALL_PREFIX}/alembic-${VERSION} )
+-ENDIF ()
+-
+ # Tell me what my install location would be
+ MESSAGE(STATUS "The install dir is ${CMAKE_INSTALL_PREFIX}" )
+ 
