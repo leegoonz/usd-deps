@@ -23,7 +23,7 @@ This package is licensed under a three-caluse BSD license, contained in the file
 - A few packages need to be installed from the OS package manager for the build to work.  On CentOS 6 I needed to:
 
 ```
-sudo yum install libxml2-devel libxslt-devel gstreamer-plugins-base gstreamer-plugins-base-devel
+sudo yum install libxml2-devel libxslt-devel gstreamer-plugins-base gstreamer-plugins-base-devel bzip2-devel sqlite-devel openssl-devel
 ```
 
 - We don't compile pylimbase or the Python support for Alembic because, well, we couldn't get them to compile
