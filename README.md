@@ -20,9 +20,11 @@ This package is licensed under a three-caluse BSD license, contained in the file
 
 - We accept the Qt open source license for you.  If you are not OK with the Qt open source license restrictions then you should not use this package.
 
-- On CentOS 6 I needed to `sudo yum install gstreamer-plugins-base gstreamer-plugins-base-devel` in order for Qt to build
+- A few packages need to be installed from the OS package manager for the build to work.  On CentOS 6 I needed to:
 
-- We assume that `libxml2` and `libXslt` are installed and can be found by cmake
+```
+sudo yum install libxml2-devel libxslt-devel gstreamer-plugins-base gstreamer-plugins-base-devel
+```
 
 - We don't compile pylimbase or the Python support for Alembic because, well, we couldn't get them to compile
 
