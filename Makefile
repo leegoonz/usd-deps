@@ -85,6 +85,7 @@ PKGS=\
 	ilmbase \
 	openexr \
 	python \
+	PyOpenGL \
 	boost \
 	glew \
 	hdf5 \
@@ -138,9 +139,12 @@ $(call buildStamp,python):
 	  $(call configureCmd,python) \
 	  --enable-shared \
 	  --enable-unicode=ucs4
-	cd build/Python-2.7.12 && $(MAKE)
 	$(call cleanDstDir,python)
-	cd build/Python-2.7.12 && $(MAKE) install
+	cd build/Python-2.7.12 && \
+	  CC=$(GCC_CC) \
+	  CXX=$(GCC_CXX) \
+	  LDFLAGS="-Wl,-rpath,$(call dstDir,python)/lib" \
+	  $(MAKE) install
 	$(call touchBuildStamp,python)
 
 #$(call buildStamp,pyilmbase): $(call buildStamp,ilmbase) $(call buildStamp,boost)
@@ -319,6 +323,16 @@ $(call buildStamp,shiboken): $(call buildStamp,python) $(call buildStamp,qt)
 	cd build/shiboken-1.2.2/build && $(MAKE) install
 	$(call touchBuildStamp,shiboken)
 
+$(call buildStamp,PyOpenGL): $(call buildStamp,python)
+	$(call unpackTarGZ,PyOpenGL-3.0.2)
+	cd build/PyOpenGL-3.0.2 && \
+	  CC=$(GCC_CC) \
+	  CXX=$(GCC_CXX) \
+	  $(call dstDir,python)/bin/python \
+	  setup.py \
+	  install
+	$(call touchBuildStamp,PyOpenGL)
+	  	
 define BUILD_SCRIPT
 #!/bin/sh
 
