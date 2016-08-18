@@ -184,7 +184,7 @@ $(call buildStamp,alembic): $(call buildStamp,boost) $(call buildStamp,ilmbase) 
 	cd build/alembic-1.5.8 && patch -p1 <../../patches/alembic/01-CMAKE_INSTALL_PREFIX.patch
 	cd build/alembic-1.5.8 && \
 	  $(call cmakeCmd,alembic) \
-	  -DCMAKE_CXX_FLAGS="-I$(call dstDir,glew)/include -L$(call dstDir,glew)/lib64" \
+	  -DCMAKE_CXX_FLAGS="-std=c++11 -I$(call dstDir,glew)/include -L$(call dstDir,glew)/lib64" \
 	  -DBUILD_SHARED_LIBS:BOOL=ON \
 	  -DBOOST_ROOT:STRING=$(call dstDir,boost) \
 	  -DBOOST_INCLUDEDIR:STRING=$(call dstDir,boost)/include \
