@@ -4,7 +4,7 @@ Building the dependencies for Pixar's [USD](https://github.com/PixarAnimationStu
 
 ## License
 
-This package is licensed under a three-clause BSD license, contained in the file [LICENSE.txt].
+This package is licensed under a three-clause BSD license, contained in the file [LICENSE.txt](/LICENSE.txt).
 
 ## Features
 
@@ -30,7 +30,7 @@ sudo yum install libxml2-devel libxslt-devel gstreamer-plugins-base-devel bzip2-
 
 ## Usage
 
-`usd-deps` uses [git lfs](https://git-lfs.github.com) to include binary copies of the packages it builds.  Before building the USD dependencies, install `git lfs` and then, in your clone of this repository, run `git lfs pull`.
+`usd-deps` uses [git lfs](https://git-lfs.github.com) to include copies of the binary packages it builds; you will need to install it if you haven't already.  Then, in your clone of this repository, run `git lfs pull` to download the binary packages.
 
 To build the USD dependencies, run:
 
