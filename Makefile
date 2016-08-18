@@ -185,6 +185,7 @@ $(call buildStamp,alembic): $(call buildStamp,boost) $(call buildStamp,ilmbase) 
 	cd build/alembic-1.5.8 && \
 	  $(call cmakeCmd,alembic) \
 	  -DCMAKE_CXX_FLAGS="-I$(call dstDir,glew)/include -L$(call dstDir,glew)/lib64" \
+	  -DBUILD_SHARED_LIBS:BOOL=ON \
 	  -DBOOST_ROOT:STRING=$(call dstDir,boost) \
 	  -DBOOST_INCLUDEDIR:STRING=$(call dstDir,boost)/include \
 	  -DBOOST_LIBRARYDIR:STRING=$(call dstDir,boost)/lib \
@@ -398,7 +399,9 @@ cmake \
   -DPXR_BUILD_ALEMBIC_PLUGIN=ON \
   -DALEMBIC_DIR=$(call dstDir,alembic) \
   $$USD_DIR \
-&& make "$$@" install
+&& make "$$@" install \
+&& ( [ -f $$INSTALL_DIR/plugin/usdAbc.so ] && mv -f $$INSTALL_DIR/plugin/usdAbc.so $$INSTALL_DIR/lib/libusdAbc.so ) \
+&& ( [ -d $$INSTALL_DIR/plugin/usdAbc ] && rm -rf $$INSTALL_DIR/share/usd/plugins/usdAbc/ && mv $$INSTALL_DIR/plugin/usdAbc $$INSTALL_DIR/share/usd/plugins )
 endef
 export BUILD_SCRIPT
 
