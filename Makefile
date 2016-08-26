@@ -55,7 +55,7 @@ cleanDstDir=
 endif
 
 touchBuildStamp=\
-	touch $(call buildStamp,$(1))	
+	touch $(call buildStamp,$(1))
 
 makeCmd=\
 	$(MAKE) \
@@ -168,7 +168,7 @@ $(call buildStamp,python):
 
 $(call buildStamp,boost): $(call buildStamp,python)
 	$(call unpackTarBZ2,boost_1_55_0)
-	echo 'using gcc : 4.8 : /opt/gcc-4.8/bin/g++ ;' >>build/boost_1_55_0/tools/build/v2/user-config.jam
+	echo 'using gcc : 4.8 : $(GCC_CXX) ;' >>build/boost_1_55_0/tools/build/v2/user-config.jam
 	cd build/boost_1_55_0 && ./bootstrap.sh --with-python=$(call dstDir,python)/bin/python
 	$(call cleanDirDir,boost)
 	cd build/boost_1_55_0 \
@@ -333,7 +333,7 @@ $(call buildStamp,PyOpenGL): $(call buildStamp,python)
 	  setup.py \
 	  install
 	$(call touchBuildStamp,PyOpenGL)
-	  	
+
 define BUILD_SCRIPT
 #!/bin/sh
 
