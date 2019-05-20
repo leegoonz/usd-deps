@@ -32,6 +32,19 @@ sudo yum install libxml2-devel libxslt-devel gstreamer-plugins-base-devel bzip2-
 
 `usd-deps` uses [git lfs](https://git-lfs.github.com) to include copies of the binary packages it builds; you will need to install it if you haven't already.  Then, in your clone of this repository, run `git lfs pull` to download the binary packages.
 
+## RODEO SPECIFIC BEGIN
+
+Once the binary packages pulled, if building with Cuda >= 7.5 some tweaks are needed in the CMakeLists.txt files
+
+```
+tar -zxvf OpenSubdiv-3_0_5.tar.gz && \
+sed -i.bak 's/compute_11/compute_20/g' OpenSubdiv-3_0_5/opensubdiv/osd/CMakeLists.txt && \
+sed -i.bak 's/compute_11/compute_20/g' OpenSubdiv-3_0_5/opensubdiv/CMakeLists.txt && \
+tar -zcvf OpenSubdiv-3_0_5.tar.gz OpenSubdiv-3_0_5
+```
+
+## RODEO SPECIFIC END
+
 To build the USD dependencies, run:
 
 ```
